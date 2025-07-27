@@ -1,5 +1,7 @@
 import { Dispatch } from "react";
 import { ACTIONTYPES } from "./ScrollSpyClient";
+import { experiences } from "../data";
+
 interface ExperienceProps {
   dispatch: Dispatch<{
     type: string;
@@ -9,41 +11,18 @@ interface ExperienceProps {
   }>;
 }
 const ExperienceSection = ({ dispatch }: ExperienceProps) => {
-  const experiences = [
-    {
-      role: "Software Engineer",
-      company: "Leroy Pharamcy",
-      period: "Mar 2024 - Present",
-      highlights:
-        "Engineered full-stack solutions to modernize core pharmacy operations, from patient-facing React components to the backend Spring Boot APIs that drive them. Developed key communication tools that directly increased the productivity of the pharmacy staff by reducing patient call volume",
-      skills: ["React", "Spring Boot", "Java", "MySQL"],
-    },
-    {
-      role: "Software Developer",
-      company: "Appian",
-      period: "Jul 2022 - Jan 2023",
-      highlights:
-        "Contributed to a large-scale, low-code platform by building features for its core interface designer. Re-architected an inefficient data-mapping process to deliver a significant performance improvement, enhancing the experience for enterprise users building their own applications.",
-      skills: ["React", "Spring MVC", "Java", "Kafka"],
-    },
-    {
-      role: "Software Engineer, Co-op",
-      company: "Fidelity Investments",
-      period: "Jul 2021 - Dec 2021",
-      highlights:
-        "Developed and optimized backend systems for a high-stakes portfolio analysis tool within a large-scale enterprise finance environment. Focused on enhancing system performance and reliability by engineering high-throughput data solutions involving caching layers and data pipelines.",
-      skills: ["Angular", "Spring Boot", "Java", "PosgreSQL"],
-    },
-    {
-      role: "Web Developer",
-      company: "BeeOnline Communications",
-      period: "Sep 2018 - Dec 2019",
-      highlights:
-        "Designed and developed data-heavy web applications for clients in the financial services industry using Angular and PHP. Specialized in building dynamic and customizable data visualization components, including over 25 different chart types to make complex financial data intuitive.",
-      skills: ["Angular", "CodeIgniter", "PHP", "MySQL"],
-    },
-  ];
-
+  const mouseEnterEvent = (skills: string[]) => {
+    dispatch({
+      type: ACTIONTYPES.SET_SKILLS,
+      payload: { skills },
+    });
+  };
+  const mouseLeaveEvent = () => {
+    dispatch({
+      type: ACTIONTYPES.SET_SKILLS,
+      payload: { skills: [] },
+    });
+  };
   return (
     <div id="experience" className="py-3 bg-white px-3">
       <div className="space-y-4 max-w-2xl mx-auto">
@@ -62,20 +41,8 @@ const ExperienceSection = ({ dispatch }: ExperienceProps) => {
  transition-colors duration-300"
             >
               <div
-                onMouseEnter={() =>
-                  dispatch({
-                    type: ACTIONTYPES.SET_SKILLS,
-                    payload: {
-                      skills: exp.skills,
-                    },
-                  })
-                }
-                onMouseLeave={() =>
-                  dispatch({
-                    type: ACTIONTYPES.SET_SKILLS,
-                    payload: { skills: [] },
-                  })
-                }
+                onMouseEnter={() => mouseEnterEvent(exp.skills || [])}
+                onMouseLeave={() => mouseLeaveEvent()}
                 className="relative p-3"
               >
                 <div className="space-y-1">
