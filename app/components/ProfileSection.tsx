@@ -1,9 +1,16 @@
 import Image from "next/image";
-
-const ProfileSection = () => {
+interface NavbarProps {
+  activeSection: String | null;
+}
+const ProfileSection: React.FC<NavbarProps> = ({ activeSection }) => {
+  const navItems = [
+    { href: "#about", label: "About" },
+    { href: "#experience", label: "Experience" },
+    { href: "#projects", label: "Projects" },
+  ];
   return (
-    <div className="text-center w-full py-8 bg-white px-6 pt-16 flex flex-col justify-between h-full">
-      <div className="space-y-8 ">
+    <div className="w-full py-8 bg-white px-6 pt-16 flex flex-col justify-between h-full gap-6 md:gap-0">
+      <div className="space-y-14 center text-center md:text-left">
         <div className="relative w-28 md:w-40 h-28 md:h-40 mx-auto">
           <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-gray-200">
             <Image
@@ -16,11 +23,11 @@ const ProfileSection = () => {
           </div>
         </div>
 
-        <div className="space-y-3">
-          <h1 className="text-2xl md:text-3xl font-bold text-purple-600">
+        <div className="space-y-2">
+          <h1 className="text-2xl md:text-4xl max-w-xs mx-auto font-bold text-purple-600">
             Dharmik Harkhani
           </h1>
-          <h2 className="text-lg md:text-xl text-gray-600">
+          <h2 className="text-lg md:text-xl max-w-xs mx-auto text-gray-600">
             Software Engineer
           </h2>
           <div className="h-px w-16 bg-gray-200 mx-auto my-4" />
@@ -28,11 +35,46 @@ const ProfileSection = () => {
             Building robust and performant applications for the modern web.
           </p>
         </div>
+        <div className="hidden md:block">
+          <ul className="md:text-base max-w-xs mx-auto space-y-3 text-gray-600">
+            {navItems.map((section) => (
+              <li key={section.href} className="relative">
+                <a
+                  className={`inline-block transition-transform duration-300 ${
+                    activeSection === section.href.substring(1)
+                      ? "text-purple-600 font-bold translate-x-2"
+                      : "text-gray-600 hover:text-purple-600"
+                  }`}
+                  href={section.href}
+                >
+                  {section.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          {/*<ul className="md:text-base  max-w-xs mx-auto space-y-3 text-gray-600">
+            {navItems.map((section) => (
+              <li key={section.href} className="relative">
+                <a
+                  className={`${
+                    activeSection == section.href.substring(1)
+                      ? " text-purple-600 font-bold translate-x-1/2 "
+                      : ""
+                  }`}
+                  href={section.href}
+                >
+                  {" "}
+                  {section.label}
+                </a>
+              </li>
+            ))}
+          </ul> */}
+        </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2 md:space-y-4 text-center md:text-left">
         {/* Contact Info */}
-        <div className="flex items-center justify-center space-x-2">
+        <div className="flex items-center  justify-center md:justify-start  md:max-w-xs md:mx-auto space-x-2">
           <svg
             className="w-4 h-4 text-gray-600"
             viewBox="0 0 24 24"
@@ -50,7 +92,7 @@ const ProfileSection = () => {
           </a>
         </div>
 
-        <div className="flex items-center justify-center space-x-2">
+        <div className="flex items-center  justify-center md:justify-start  md:max-w-xs md:mx-auto space-x-2">
           <svg
             className="w-4 h-4 text-gray-600"
             viewBox="0 0 24 24"
@@ -65,7 +107,7 @@ const ProfileSection = () => {
         </div>
 
         {/* Social Links */}
-        <div className="flex items-center justify-center space-x-4 pt-2">
+        <div className="flex items-center justify-center  max-w-xs mx-auto  space-x-4 pt-2">
           <a
             href="https://github.com/harkhanid"
             target="_blank"

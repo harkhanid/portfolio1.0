@@ -1,6 +1,10 @@
 // Define the props interface for the parser component
 
-const SkillsSection = () => {
+interface SkillsSectionProps {
+  selectedSkills: string[];
+}
+
+const SkillsSection = ({ selectedSkills }: SkillsSectionProps) => {
   const skills = [
     {
       category: "Languages",
@@ -50,9 +54,9 @@ const SkillsSection = () => {
   ];
 
   return (
-    <div className="bg-white px-6 py-6">
-      <div className="space-y-4 max-w-2xl mx-auto">
-        <div>
+    <div className="bg-white px-3 py-3">
+      <div className="space-y-3 max-w-2xl mx-auto px-4">
+        <div className="sticky top-0 z-10 bg-white  pb-0">
           <h3 className="text-lg font-semibold text-gray-900 text-center md:text-left">
             Core Skills
           </h3>
@@ -72,7 +76,11 @@ const SkillsSection = () => {
                 {skillGroup.items.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-1 text-sm bg-gray-50 text-gray-700 rounded-full ring-1 ring-gray-200"
+                    className={`px-2.5 py-1 text-sm rounded-full ring-1 ring-gray-200 bg-gray-50 text-gray-700 transition-colors duration-300 ${
+                      selectedSkills.includes(skill)
+                        ? "bg-purple-200 text-purple-800 ring-purple-300"
+                        : "hover:bg-gray-100 hover:text-gray-900"
+                    }`}
                   >
                     {skill}
                   </span>
