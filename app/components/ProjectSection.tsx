@@ -5,7 +5,7 @@ interface ProjectDispatch {
   dispatch: Dispatch<{
     type: string;
     payload: {
-      skills?: string[];
+      skills: string[];
     };
   }>;
 }
@@ -42,7 +42,6 @@ const ProjectSection = ({ dispatch }: ProjectDispatch) => {
           </h3>
           <div className="h-px w-full bg-gray-200 mt-2" />
         </div>
-
         <div className="space-y-5">
           {projects.map((project, ind) => (
             <div
@@ -55,7 +54,7 @@ const ProjectSection = ({ dispatch }: ProjectDispatch) => {
                   dispatch({
                     type: ACTIONTYPES.SET_SKILLS,
                     payload: {
-                      skills: project.skills,
+                      skills: project.skills ?? [],
                     },
                   })
                 }

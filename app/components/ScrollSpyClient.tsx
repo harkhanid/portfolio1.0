@@ -13,7 +13,7 @@ const useScrollSpy = (
   sectionIds: string[],
   options?: ObserverOptions
 ): string | null => {
-  const [activeSection, setActiveSection] = useState<String | null>(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const observer = useRef<IntersectionObserver | null>(null);
   useEffect(() => {
     // Create the observer instance
@@ -62,7 +62,7 @@ const reducer = (
   }
 };
 
-const ScrollSpyClient = (children: any) => {
+const ScrollSpyClient = () => {
   const [state, dispatch] = useReducer(reducer, { skills: [] as string[] });
   const { skills } = state;
   const sectionIds = ["about", "experience", "projects"];
