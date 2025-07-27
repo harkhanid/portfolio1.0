@@ -1,32 +1,33 @@
-const ExperienceSection = () => {
-  const experiences = [
-    {
-      role: "Software Engineer",
-      company: "Leroy Pharamcy",
-      period: "2024 - Present",
-      highlights:
-        "Led development of microservices architecture, 40% improvement in system performance",
-    },
-    {
-      role: "Software Engineer",
-      company: "Innovation Labs",
-      period: "2017 - 2020",
-      highlights:
-        "Architected cloud-native applications, mentored junior developers",
-    },
-    {
-      role: "Full Stack Developer",
-      company: "StartUp Inc",
-      period: "2015 - 2017",
-      highlights: "Built scalable web applications using React and Node.js",
-    },
-  ];
+import { Dispatch } from "react";
+import { ACTIONTYPES } from "./ScrollSpyClient";
+import { experiences } from "../data";
 
+interface ExperienceProps {
+  dispatch: Dispatch<{
+    type: string;
+    payload: {
+      skills?: string[];
+    };
+  }>;
+}
+const ExperienceSection = ({ dispatch }: ExperienceProps) => {
+  const mouseEnterEvent = (skills: string[]) => {
+    dispatch({
+      type: ACTIONTYPES.SET_SKILLS,
+      payload: { skills },
+    });
+  };
+  const mouseLeaveEvent = () => {
+    dispatch({
+      type: ACTIONTYPES.SET_SKILLS,
+      payload: { skills: [] },
+    });
+  };
   return (
-    <div className="py-6 bg-white px-6">
+    <div id="experience" className="py-3 bg-white px-3">
       <div className="space-y-4 max-w-2xl mx-auto">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 text-center md:text-left">
+        <div className="md:hidden  sticky top-0 z-10 bg-white py-4 px-6 pb-0 backdrop-blur opacity-95">
+          <h3 className="text-lg font-semibold text-gray-900 text-center md:text-left ">
             Experience
           </h3>
           <div className="h-px w-full bg-gray-200 mt-2" />
@@ -34,13 +35,19 @@ const ExperienceSection = () => {
 
         <div className="space-y-5">
           {experiences.map((exp) => (
-            <div key={exp.company} className="relative">
-              <div className="relative pl-4 border-l-2 border-gray-200">
-                <div className="absolute -left-[5px] top-[10px] h-2.5 w-2.5 rounded-full bg-gray-300" />
-
+            <div
+              key={exp.company}
+              className="relative group cursor-pointer rounded-s hover:bg-gray-100  hover:scale-104 hover:shadow-m transition-transform 
+ transition-colors duration-300"
+            >
+              <div
+                onMouseEnter={() => mouseEnterEvent(exp.skills || [])}
+                onMouseLeave={() => mouseLeaveEvent()}
+                className="relative p-3"
+              >
                 <div className="space-y-1">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                    <h4 className="text-md font-medium text-gray-900">
+                    <h4 className="text-md font-medium text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
                       {exp.role}
                     </h4>
                     <span className="text-sm text-gray-500">{exp.period}</span>

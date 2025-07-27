@@ -1,0 +1,92 @@
+import { Dispatch } from "react";
+import { ACTIONTYPES } from "./ScrollSpyClient";
+
+interface ProjectDispatch {
+  dispatch: Dispatch<{
+    type: string;
+    payload: {
+      skills?: string[];
+    };
+  }>;
+}
+const ProjectSection = ({ dispatch }: ProjectDispatch) => {
+  const projects = [
+    {
+      name: "Q/A Backend Application",
+      period: "2024 - Present",
+      description:
+        "Built a backend application for a Q&A platform where users can post, answer, and search questions by category. The infrastructure was custom-built on AWS, featuring a secure network (VPC, Subnets, Gateway) and a scalable architecture using EC2, Auto Scaling, a Load Balancer, RDS, and SQS.",
+      skills: ["React", "Spring Boot", "Java", "MySQL"],
+    },
+    {
+      name: "Q/A Backend Application",
+      period: "2024 - Present",
+      description:
+        "Engineered a scalable Express.js backend for a Q&A platform featuring a secure, token-based JWT authentication system. Designed a hybrid data architecture on AWS, using Amazon RDS for relational content and DynamoDB to manage real-time notification states. Provisioned the entire cloud infrastructure as code (IaaC), including the VPC and load balancers, using Terraform. A complete CI/CD pipeline built with GitHub Actions fully automated the build, test, and deployment cycle.",
+      skills: ["Angular", "Spring Boot", "Java", "PosgreSQL"],
+    },
+    {
+      name: "Q/A Backend Application",
+      period: "2024 - Present",
+      description:
+        "Engineered a scalable Express.js backend for a Q&A platform featuring a secure, token-based JWT authentication system. Designed a hybrid data architecture on AWS, using Amazon RDS for relational content and DynamoDB to manage real-time notification states. Provisioned the entire cloud infrastructure as code (IaaC), including the VPC and load balancers, using Terraform. A complete CI/CD pipeline built with GitHub Actions fully automated the build, test, and deployment cycle.",
+    },
+  ];
+
+  return (
+    <div id="projects" className="py-3 bg-white px-3">
+      <div className="space-y-4 max-w-2xl mx-auto">
+        <div className="md:hidden  sticky top-0 z-10 bg-white py-4 px-6 pb-0 backdrop-blur opacity-95">
+          <h3 className="text-lg font-semibold text-gray-900 text-center md:text-left ">
+            Projects
+          </h3>
+          <div className="h-px w-full bg-gray-200 mt-2" />
+        </div>
+
+        <div className="space-y-5">
+          {projects.map((project, ind) => (
+            <div
+              key={ind}
+              className="relative group cursor-pointer rounded-s hover:bg-gray-100  hover:scale-104 hover:shadow-m transition-transform 
+ transition-colors duration-300"
+            >
+              <div
+                onMouseEnter={() =>
+                  dispatch({
+                    type: ACTIONTYPES.SET_SKILLS,
+                    payload: {
+                      skills: project.skills,
+                    },
+                  })
+                }
+                onMouseLeave={() =>
+                  dispatch({
+                    type: ACTIONTYPES.SET_SKILLS,
+                    payload: { skills: [] },
+                  })
+                }
+                className="relative p-3"
+              >
+                <div className="space-y-1">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <h4 className="text-md font-medium text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
+                      {project.name}
+                    </h4>
+                    <span className="text-sm text-gray-500">
+                      {project.period}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProjectSection;
