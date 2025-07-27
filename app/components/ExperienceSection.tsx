@@ -2,15 +2,15 @@ import { Dispatch } from "react";
 import { ACTIONTYPES } from "./ScrollSpyClient";
 import { experiences } from "../data";
 
-interface ExperienceProps {
+interface DispatchProps {
   dispatch: Dispatch<{
     type: string;
     payload: {
-      skills?: string[];
+      skills: string[];
     };
   }>;
 }
-const ExperienceSection = ({ dispatch }: ExperienceProps) => {
+const ExperienceSection = ({ dispatch }: DispatchProps) => {
   const mouseEnterEvent = (skills: string[]) => {
     dispatch({
       type: ACTIONTYPES.SET_SKILLS,

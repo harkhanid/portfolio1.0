@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Profile } from "../data";
 interface NavbarProps {
-  activeSection: String | null;
+  activeSection: string | null;
 }
 const ProfileSection: React.FC<NavbarProps> = ({ activeSection }) => {
   const navItems = [
