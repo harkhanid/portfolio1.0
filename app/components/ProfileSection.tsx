@@ -13,12 +13,12 @@ const ProfileSection: React.FC<NavbarProps> = ({ activeSection }) => {
     <div className="w-full py-8 bg-white px-6 pt-16 flex flex-col justify-between h-full gap-6 md:gap-0">
       <div className="space-y-14 center text-center md:text-left">
         <div className="relative w-28 md:w-40 h-28 md:h-40 mx-auto">
-          <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-gray-200">
+          <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-purple-200">
             <Image
               src={Profile.image}
               alt="Profile"
               fill
-              className="object-cover"
+              className="object-cover contain"
               priority
             />
           </div>

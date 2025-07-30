@@ -65,7 +65,25 @@ const reducer = (
 const ScrollSpyClient = () => {
   const [state, dispatch] = useReducer(reducer, { skills: [] as string[] });
   const { skills } = state;
+  const ref = useRef<HTMLDivElement>(null);
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current) return;
+      // Get element's bounding rect relative to viewport
+      const rect = ref.current.getBoundingClientRect();
+      // When top of element <= 0, it's sticky on top
+      setIsSticky(rect.top <= 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // initial check
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const sectionIds = ["about", "experience", "projects"];
+
   const activeSection = useScrollSpy(sectionIds, {
     rootMargin: "-50% 0px -75% 0px",
   });
@@ -84,7 +102,12 @@ const ScrollSpyClient = () => {
             <AboutMeSection />
           </div>
           {/* Skills Section */}
-          <div className="md:sticky backdrop-blur background-white top-0 z-20 mt-2">
+          <div
+            ref={ref}
+            className={`md:sticky backdrop-blur background-white top-0 z-20 mt-2transition-shadow duration-300 ${
+              isSticky ? "shadow-lg" : "shadow-none"
+            }`}
+          >
             <SkillsSection selectedSkills={skills} />
           </div>
 
@@ -95,40 +118,6 @@ const ScrollSpyClient = () => {
           <div className="mt-6 md:mt-20">
             <ProjectSection dispatch={dispatch} />
           </div>
-          {/* <footer className="mt-16 sm:mt-24">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-              <div className="border-t border-slate-200/20 py-10">
-                <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-                  <div className="flex flex-col items-center gap-2 text-center sm:items-start sm:text-left">
-                    <p className="text-sm leading-6 text-slate-400">
-                      Coded with ❤️ by
-                      <a
-                        href="[Your GitHub/LinkedIn URL]"
-                        className="font-semibold text-slate-200 hover:text-teal-300"
-                      >
-                        Dharmik Harkhani
-                      </a>
-                      .
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm leading-6 text-gray-500">
-                      Design inspiration from
-                      <a
-                        href="https://brittanychiang.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-semibold text-gray-600 hover:text-purple-600"
-                      >
-                        &nbsp;Brittany Chiang
-                      </a>
-                      .
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </footer> */}
         </div>
       </div>
     </main>
