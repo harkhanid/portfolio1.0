@@ -1,9 +1,11 @@
+import { link } from "fs";
+
 export const Profile = {
   name: "Dharmik Harkhani",
   title: "Software Engineer",
   description:
     "Building robust and performant applications for the modern web.",
-  image: "/portrait.jpg",
+  image: "/profile1.png",
   contact: [
     {
       type: "Email",
@@ -64,6 +66,84 @@ export const aboutMe = [
   "Outside of tech, you’ll find me exploring my other interests: trying to make sense of geopolitics, relaxing with some anime, or exploring the neighborhood while playing Pokémon Go.",
 ];
 
+export const skills = [
+  {
+    category: "Languages",
+    items: ["Java", "JavaScript", "PHP", "Python"],
+    icon: (
+      <svg
+        className="w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#9DA2AF"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {/* Represents code with angle brackets */}
+        <polyline points="16 18 22 12 16 6"></polyline>
+        <polyline points="8 6 2 12 8 18"></polyline>
+      </svg>
+    ),
+  },
+  {
+    category: "Backend",
+    items: ["Spring Boot", "Spring", "Kafka", "Node.js"],
+    icon: (
+      <svg
+        className="w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#9DA2AF"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {/* Represents server stacks or databases */}
+        <path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
+      </svg>
+    ),
+  },
+  {
+    category: "Frontend",
+    items: ["React", "Redux", "Angular", "Next.js"],
+    icon: (
+      <svg
+        className="w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#9DA2AF"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {/* Represents a browser window or UI layout */}
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="3" y1="9" x2="21" y2="9"></line>
+        <line x1="9" y1="21" x2="9" y2="9"></line>
+      </svg>
+    ),
+  },
+  {
+    category: "Cloud & Databases",
+    items: ["AWS", "Terraform", "NoSQL", "MySQL"],
+    icon: (
+      <svg
+        className="w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#9DA2AF"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {/* A classic cloud shape */}
+        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+      </svg>
+    ),
+  },
+];
+
 export const experiences = [
   {
     role: "Software Engineer",
@@ -71,7 +151,8 @@ export const experiences = [
     period: "Mar 2024 - Present",
     highlights:
       "Engineered full-stack solutions to modernize core pharmacy operations, from patient-facing React components to the backend Spring Boot APIs that drive them. Developed key communication tools that directly increased the productivity of the pharmacy staff by reducing patient call volume",
-    skills: ["React", "Spring Boot", "Java", "MySQL"],
+    skills: ["React", "Spring Boot", "Java", "AWS", "MySQL"],
+    link: "https://www.leroyrx2.com/",
   },
   {
     role: "Software Developer",
@@ -79,7 +160,8 @@ export const experiences = [
     period: "Jul 2022 - Jan 2023",
     highlights:
       "Contributed to a large-scale, low-code platform by building features for its core interface designer. Re-architected an inefficient data-mapping process to deliver a significant performance improvement, enhancing the experience for enterprise users building their own applications.",
-    skills: ["React", "Spring MVC", "Java", "Kafka"],
+    skills: ["React", "Spring", "Java", "Kafka", "MySQL"],
+    link: "https://appian.com/products/platform/low-code",
   },
   {
     role: "Software Engineer, Co-op",
@@ -88,6 +170,7 @@ export const experiences = [
     highlights:
       "Developed and optimized backend systems for a high-stakes portfolio analysis tool within a large-scale enterprise finance environment. Focused on enhancing system performance and reliability by engineering high-throughput data solutions involving caching layers and data pipelines.",
     skills: ["Angular", "Spring Boot", "Java", "PosgreSQL"],
+    link: "https://www.fidelity.com/",
   },
   {
     role: "Web Developer",
@@ -96,5 +179,33 @@ export const experiences = [
     highlights:
       "Designed and developed data-heavy web applications for clients in the financial services industry using Angular and PHP. Specialized in building dynamic and customizable data visualization components, including over 25 different chart types to make complex financial data intuitive.",
     skills: ["Angular", "CodeIgniter", "PHP", "MySQL"],
+    link: "https://www.beeonline.com/",
+  },
+];
+
+export const projects = [
+  {
+    name: "Q/A Backend Application",
+    period: "2024 - Present",
+    description:
+      "Built a backend application for a Q&A platform where users can post, answer, and search questions by category. The infrastructure was custom-built on AWS, featuring a secure network (VPC, Subnets, Gateway) and a scalable architecture using EC2, Auto Scaling, a Load Balancer, RDS, and SQS.",
+    skills: [
+      "JavaScript",
+      "Express.js",
+      "MySQL",
+      "NoSQL",
+      "AWS",
+      "Terraform",
+      "Node.js",
+    ],
+    link: "https://github.com/harkhanid/AskQuestions",
+  },
+  {
+    name: "SafeDistance",
+    period: "2020 - 2020",
+    description:
+      "A social distancing application that displays a real-time heatmap of local crowd density and sends anonymous notifications to users who may have been exposed to a self-reported COVID−19 case within the last 14 days.",
+    skills: ["React", "Node.js", "MySQL", "Adobe XD"],
+    link: "https://github.com/harkhanid/safeDistance",
   },
 ];
