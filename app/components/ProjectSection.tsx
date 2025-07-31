@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import { Dispatch, useEffect } from "react";
 import { ACTIONTYPES } from "./ScrollSpyClient";
 import { projects } from "../data";
 interface ProjectDispatch {
@@ -9,7 +9,32 @@ interface ProjectDispatch {
     };
   }>;
 }
+
+console.log("ProjectSection loaded with projects:", projects);
+const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
+  useEffect(() => {
+    console.log("ProjectCard mounted for:", project.name);
+  }, []);
+  return (
+    <div className="p-3 space-y-1">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+        <h4 className="text-md font-medium text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
+          {project.name}
+        </h4>
+        <span className="text-sm text-gray-500">{project.period}</span>
+      </div>
+      <p className="text-sm text-gray-600 leading-relaxed">
+        {project.description}
+      </p>
+    </div>
+  );
+};
+
 const ProjectSection = ({ dispatch }: ProjectDispatch) => {
+  useEffect(() => {
+    console.log("ProjectSection mounted");
+  }, []);
+
   const mouseEnterEvent = (skills: string[]) => {
     dispatch({
       type: ACTIONTYPES.SET_SKILLS,
@@ -22,25 +47,7 @@ const ProjectSection = ({ dispatch }: ProjectDispatch) => {
       payload: { skills: [] },
     });
   };
-  const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
-    return (
-      <div
-        className="p-3 space-y-1"
-        onMouseEnter={() => mouseEnterEvent(project.skills ?? [])}
-        onMouseLeave={mouseLeaveEvent}
-      >
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <h4 className="text-md font-medium text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
-            {project.name}
-          </h4>
-          <span className="text-sm text-gray-500">{project.period}</span>
-        </div>
-        <p className="text-sm text-gray-600 leading-relaxed">
-          {project.description}
-        </p>
-      </div>
-    );
-  };
+
   return (
     <div id="projects" className="py-3 bg-white px-3">
       <div className="space-y-4 max-w-2xl mx-auto">
@@ -58,19 +65,20 @@ transition-colors duration-300`,
             onMouseEnter: () => mouseEnterEvent(project.skills || []),
             onMouseLeave: () => mouseLeaveEvent(),
           };
-          return project.link ? (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              key={ind}
-              {...wrapperProps}
-            >
-              <ProjectCard project={project} />
-            </a>
-          ) : (
-            <div key={ind} {...wrapperProps}>
-              <ProjectCard project={project} />
+          return (
+            <div key={`Pro-${ind}`} {...wrapperProps}>
+              {project.link ? (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  {...wrapperProps}
+                >
+                  <ProjectCard project={project} />
+                </a>
+              ) : (
+                <ProjectCard project={project} />
+              )}
             </div>
           );
         })}

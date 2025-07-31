@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import { Dispatch, useEffect } from "react";
 import { ACTIONTYPES } from "./ScrollSpyClient";
 import { experiences } from "../data";
 
@@ -21,31 +21,34 @@ interface ExperienceProps {
     skills: string[];
   };
 }
-
-const ExperienceSection = ({ dispatch }: DispatchProps) => {
-  const ExperienceCard = ({ exp }: ExperienceProps) => {
-    return (
-      <div className="p-3 space-y-1">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <h4 className="text-md font-medium text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
-            {exp.role}
-          </h4>
-          <span className="text-sm text-gray-500">{exp.period}</span>
-        </div>
-        <p className="text-sm font-medium text-gray-600">{exp.company}</p>
-        <p className="text-sm text-gray-600 leading-relaxed">
-          {exp.highlights}
-        </p>
+const ExperienceCard = ({ exp }: ExperienceProps) => {
+  return (
+    <div className="p-3 space-y-1">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+        <h4 className="text-md font-medium text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
+          {exp.role}
+        </h4>
+        <span className="text-sm text-gray-500">{exp.period}</span>
       </div>
-    );
-  };
+      <p className="text-sm font-medium text-gray-600">{exp.company}</p>
+      <p className="text-sm text-gray-600 leading-relaxed">{exp.highlights}</p>
+    </div>
+  );
+};
+const ExperienceSection = ({ dispatch }: DispatchProps) => {
+  useEffect(() => {
+    console.log("ExperienceSection mounted");
+  }, []);
+
   const mouseEnterEvent = (skills: string[]) => {
+    console.log("Entering experience section with skills:", skills);
     dispatch({
       type: ACTIONTYPES.SET_SKILLS,
       payload: { skills },
     });
   };
   const mouseLeaveEvent = () => {
+    console.log("Leaving experience section");
     dispatch({
       type: ACTIONTYPES.SET_SKILLS,
       payload: { skills: [] },
@@ -63,29 +66,26 @@ const ExperienceSection = ({ dispatch }: DispatchProps) => {
         </div>
 
         <div className="space-y-5">
-          {experiences.map((exp) => {
+          {experiences.map((exp, ind) => {
             const wrapperProps = {
-              className: `relative group cursor-pointer rounded-s hover:bg-gray-100  hover:scale-104 hover:shadow-m transition-transform 
+              className: ` group cursor-pointer rounded-s hover:bg-gray-100 hover:shadow-m transition-transform 
  transition-colors duration-300`,
               onMouseEnter: () => mouseEnterEvent(exp.skills || []),
               onMouseLeave: () => mouseLeaveEvent(),
             };
             return (
-              <div key={exp.role}>
+              <div key={`Exp-${ind}`} {...wrapperProps}>
                 {exp.link ? (
                   <a
-                    key={exp.company}
                     href={exp.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    {...wrapperProps}
+                    className="block"
                   >
                     {<ExperienceCard exp={exp} />}
                   </a>
                 ) : (
-                  <div {...wrapperProps}>
-                    <ExperienceCard key={exp.company} exp={exp} />
-                  </div>
+                  <ExperienceCard exp={exp} />
                 )}
               </div>
             );
