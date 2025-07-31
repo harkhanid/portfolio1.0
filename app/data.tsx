@@ -1,5 +1,3 @@
-import { link } from "fs";
-
 export const Profile = {
   name: "Dharmik Harkhani",
   title: "Software Engineer",
@@ -179,7 +177,6 @@ export const experiences = [
     highlights:
       "Designed and developed data-heavy web applications for clients in the financial services industry using Angular and PHP. Specialized in building dynamic and customizable data visualization components, including over 25 different chart types to make complex financial data intuitive.",
     skills: ["Angular", "CodeIgniter", "PHP", "MySQL"],
-    link: "https://www.beeonline.com/",
   },
 ];
 

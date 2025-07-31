@@ -29,7 +29,7 @@ const SkillsSection = ({ selectedSkills }: SkillsSectionProps) => {
                     key={skill}
                     className={`px-2.5 py-1 text-sm rounded-full ring-1 ring-gray-200 bg-gray-50 text-gray-700 transition-colors duration-300 ${
                       selectedSkills.includes(skill)
-                        ? "bg-purple-200 text-purple-800 ring-purple-300"
+                        ? "md:bg-purple-200 md:text-purple-800 md:ring-purple-300"
                         : "hover:bg-gray-100 hover:text-gray-900"
                     }`}
                   >
