@@ -1,5 +1,3 @@
-import { link } from "fs";
-
 export const Profile = {
   name: "Dharmik Harkhani",
   title: "Software Engineer",
