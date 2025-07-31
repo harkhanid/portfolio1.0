@@ -104,8 +104,8 @@ const ScrollSpyClient = () => {
           {/* Skills Section */}
           <div
             ref={ref}
-            className={`md:sticky backdrop-blur background-white top-0 z-20 mt-2transition-shadow duration-300 ${
-              isSticky ? "shadow-lg" : "shadow-none"
+            className={`md:sticky backdrop-blur background-white top-0 z-20 mt-2 transition-shadow duration-300 ${
+              isSticky ? "md:shadow-lg" : "shadow-none"
             }`}
           >
             <SkillsSection selectedSkills={skills} />
