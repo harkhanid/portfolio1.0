@@ -167,8 +167,31 @@ export const experiences = [
 
 export const projects = [
   {
+    name: "Notes Application (In Progress)",
+    period: "Aug 2025 - Present",
+    description:
+      "Building a secure notes platform inspired by Apple Notes and Notion, featuring user authentication and authorization. Current features include note creation and management, with future plans to expand into semantic search, collaborative editing, and intelligent organization. The project emphasizes scalable architecture, modern UI/UX design, and extensible backend services.",
+    skills: ["React", "MySQL", "Spring Boot", "Java", "Spring Security"],
+    link: "https://notes.dharmikharkhani.com/",
+  },
+  {
+    name: "AI Chef",
+    period: "May 2025 - July 2025",
+    description:
+      "Developed a two-page web application where users can input available ingredients and generate AI-assisted recipes tailored to those inputs. Designed with a simple interface for ingredient entry and recipe output, the project demonstrates dynamic data handling and API integration to provide personalized cooking recommendations.",
+    skills: [
+      "JavaScript",
+      "Express.js",
+      "Open AI",
+      "React",
+      "Node.js",
+      "Next.js",
+    ],
+    link: "https://aichef.dharmikharkhani.com/",
+  },
+  {
     name: "Q/A Backend Application",
-    period: "2024 - Present",
+    period: "June 2022 -  Dec 2022",
     description:
       "Built a backend application for a Q&A platform where users can post, answer, and search questions by category. The infrastructure was custom-built on AWS, featuring a secure network (VPC, Subnets, Gateway) and a scalable architecture using EC2, Auto Scaling, a Load Balancer, RDS, and SQS.",
     skills: [
@@ -184,7 +207,7 @@ export const projects = [
   },
   {
     name: "SafeDistance",
-    period: "2020 - 2020",
+    period: "May 2020 - Aug 2020",
     description:
       "A social distancing application that displays a real-time heatmap of local crowd density and sends anonymous notifications to users who may have been exposed to a self-reported COVID−19 case within the last 14 days.",
     skills: ["React", "Node.js", "MySQL", "Adobe XD"],
