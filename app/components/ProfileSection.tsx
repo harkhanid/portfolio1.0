@@ -57,6 +57,25 @@ const ProfileSection: React.FC<NavbarProps> = ({ activeSection }) => {
       </div>
 
       <div className="space-y-2 md:space-y-4 text-center md:text-left">
+        {/* Resume */}
+        <div className="flex items-center justify-center md:justify-start md:max-w-xs md:mx-auto space-x-2">
+          <svg
+            className="w-4 h-4 text-gray-600"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+          </svg>
+          <a
+            href={Profile.resume}
+            download
+            className="text-sm text-gray-600 hover:text-purple-600 transition-colors duration-300"
+          >
+            Download Resume
+          </a>
+        </div>
         {/* Contact Info */}
         {Profile.contact.map((contact, index) => (
           <div

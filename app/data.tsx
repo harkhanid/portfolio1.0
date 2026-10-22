@@ -4,6 +4,7 @@ export const Profile = {
   description:
     "Building robust and performant applications for the modern web.",
   image: "/profile1.png",
+  resume: "/Dharmik_Harkhani_Resume.pdf",
   contact: [
     {
       type: "Email",
