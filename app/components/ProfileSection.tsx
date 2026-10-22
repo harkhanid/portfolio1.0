@@ -73,7 +73,7 @@ const ProfileSection: React.FC<NavbarProps> = ({ activeSection }) => {
             download
             className="text-sm text-gray-600 hover:text-purple-600 transition-colors duration-300"
           >
-            Download Resume
+            My Resume
           </a>
         </div>
         {/* Contact Info */}
